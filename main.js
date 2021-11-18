@@ -1,7 +1,6 @@
 
 const optionsButtonElement = document.getElementById('options-btn');
 const textFieldElement = document.getElementById('text-field');
-console.log(textFieldElement)
 let state = {};
 const storyNode = [
     {
@@ -10,21 +9,18 @@ const storyNode = [
         options: [
             {
                 text: 'Start',
-                setState: {Start: true},
                 nextScene: 1,
             }
         ]
     },  {
         id: 1,
-        text: 'Alert, Alert, the zombies had broken into your safe house! ',
+        text: 'Alert, Alert, the zombies had broken into your house! ',
         options: [
             {
                 text: 'Try to scape',
-                setState: {Start: true, scape: true},
                 nextScene: 2,
             }, {
                 text: 'Fight',
-                setState: {Start: true, Fight: true},
                 nextScene: 4,
             }
         ]
@@ -34,30 +30,25 @@ const storyNode = [
         options: [
             {
                 text: 'your bag',
-                setState: {Start: true},
-                nextScene: 2,
+                nextScene: 3,
             }, {
                 text: 'you sword',
-                setState: {Start: true},
-                nextScene: 2,
+                nextScene: 3,
             }, {
                 text: 'your phone!',
-                setState: {Start: true},
-                nextScene: 2,
+                nextScene: 3,
             }
         ]
     },  {
-        id: 2,
+        id: 3,
         text: ' you manged to scape from them. now What? ',
         options: [
             {
                 text: 'Scape to the wood',
-                setState: {Start: true},
-                nextScene: 2,
+                nextScene: 5,
             }, {
-                text: 'search for another safe house',
-                setState: {Start: true},
-                nextScene: 1,
+                text: 'Search for another safe house',
+                nextScene: 6,
             }
         ]
     },  {
@@ -66,12 +57,31 @@ const storyNode = [
         options: [
             {
                 text: 'A Sword',
-                setState: {Start: true},
                 nextScene: 0,
             },{
                 text: 'A gun',
-                setState: {Start: true},
                 nextScene: 0,
+            }
+        ]
+    },  {
+        id: 5,
+        text: 'Its dark soon and you are super tired',
+        options: [
+            {
+                text: 'Sleep under a tree',
+                nextScene: 6,
+            },{
+                text: 'keep exploring',
+                nextScene: 0,
+            }
+        ]
+    },  {
+        id: 6,
+        text: 'A groupe of zombies has found you! You lose!',
+        options: [
+            {
+                text: 'Restart',
+                nextScene: -1,
             }
         ]
     }
@@ -83,10 +93,34 @@ function startGame() {
 }
 
 
-
+/**
+ * blocking up the index for the object and add the options buttons
+ * @param {Index} sceneIndex 
+ */
 function showStoryNode(sceneIndex) {
     const sceneNode = storyNode.find(sceneNode => sceneNode.id === sceneIndex)
     textFieldElement.innerHTML = sceneNode.text;
+
+    optionsButtonElement.innerHTML = '';
+    sceneNode.options.forEach(option => {
+        if (showOption(option)) {
+            const button = document.createElement('button');
+            button.innerHTML = option.text
+            button.classList.add('btn-primary')
+            button.addEventListener('click', () => selectOption(option));
+            optionsButtonElement.appendChild(button)
+        }
+    });
+}
+function showOption(option) {
+        return true;
+}
+function selectOption(option) {
+    const nextSceneNodeId = option.nextScene;
+    if (nextSceneNodeId < 0) {
+       return startGame()
+    }
+    showStoryNode(nextSceneNodeId)
 }
 
 startGame()
