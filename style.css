@@ -23,10 +23,18 @@
     height: 70vh;
     width: 600px;
     max-width: 90%;
+    text-align: center;
 }
+.text-field{
+    font-size: 22px;
+    font-weight: bolder;
+    color: rgb(58, 48, 48);
 
-.btn{
+}
+.btn-primary{
    min-width:150px;
    height: 50px;
    margin-top: 1em;
+   border-radius: 5px;
+   margin: 5px;
 }
