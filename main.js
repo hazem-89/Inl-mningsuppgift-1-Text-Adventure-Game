@@ -231,7 +231,7 @@ function startGame() {
     showStoryNode(0)
 }
 
-/** bringing the index for the object and creating the options buttons
+/** Selecting the index for the story node and creating the options buttons
  * 
  * @param {Index} sceneIndex 
  */
@@ -280,24 +280,29 @@ let activeImageIndex = 0;
  *
  */
 function startSlider() {
-    setInterval(fadeToNextImage, 10000)
+    setInterval(fadeToNextImage, 15000)
 }
 
 /** creating the background slide function
  * 
  */
 function fadeToNextImage() {
-  const images =  document.querySelectorAll('.slider > img')
+//  select all the images in the slid div
+  const images =  document.querySelectorAll('.slider > img');
+
+// select the active image
   const activeImage = images[activeImageIndex];
-  if (activeImageIndex => images.length - 1) {
+  if (activeImageIndex >= images.length - 1) {
       activeImageIndex = 0;
   } else {
       activeImageIndex += 1; 
   } 
-
+// selecting the next image in the slide
   const nextImage = images[activeImageIndex + 1];
-  activeImage.classList.toggle('show')
-  nextImage.classList.toggle('show')
+
+  // toggle the show class between active and next images
+  activeImage.classList.toggle('show');
+  nextImage.classList.toggle('show');
 }
 startSlider()
 startGame()
