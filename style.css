@@ -3,6 +3,8 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* game container styling */
 #main-container{
     display: flex;
     justify-content: center;
@@ -14,6 +16,8 @@
     top: 0;
     left: 30%;
 }
+
+/* Game content styling */
 #content{
     display: flex;
     flex-direction: column;
@@ -29,12 +33,14 @@
     text-align: center;
     
 }
+/* Game text-content styling */
 .text-field{
     font-size: 22px;
     font-weight: bolder;
     color: rgb(58, 48, 48);
     height: 100px;
 }
+/* Game buttons styling */
 .btn-primary{
    min-width:150px;
    height: 50px;
@@ -42,6 +48,8 @@
    border-radius: 5px;
    margin: 5px;
 }
+
+/* Game background styling */
 .slider, .slider> img {
     height: 100vh;
     width: 100%;

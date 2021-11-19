@@ -42,7 +42,7 @@ const storyNode =[
         ]
     },  {
         id: 4, //
-        text: 'chose a weapon',
+        text: 'Please chose a weapon',
         options: [
             {
                 text: 'A Sword',
@@ -62,7 +62,7 @@ const storyNode =[
                 text: 'Sleep under a tree',
                 nextScene: 6,
             },{
-                text: 'keep exploring',
+                text: 'Keep exploring',
                 nextScene: 7,
             }
         ]
@@ -77,26 +77,26 @@ const storyNode =[
         ]
     },  {
         id: 7,
-        text: 'you managed to find the main road, you see a car',
+        text: 'You managed to find the main road, you see a car',
         options: [
             {
                 text: 'Drive the car',
                 nextScene: 8,
             },{
-                text: 'sleep in the car',
+                text: 'Sleep in the car',
                 nextScene: 17,           //
             }
         ]
     },  {
         id: 8,
-        text: 'while you trying to start the car it made a lot of noise and the zombies are heading to you now',
+        text: 'While you trying to start the car it made a lot of noise and the zombies are heading to you now',
         options: [
             {
-                text: 'take the sword and fight',
+                text: 'Take the sword and fight',
                 requiredState: (currentState) => currentState.sword,
                 nextScene: 9,
             }, {
-                text: 'take the gun and fight',
+                text: 'Take the gun and fight',
                 requiredState: (currentState) => currentState.gun,
                 nextScene: 10,
             } ,{
@@ -112,7 +112,7 @@ const storyNode =[
                 text: 'Take a rest and sleep in the car',
                 nextScene: 17,
             },{
-                text: 'keep exploring',
+                text: 'Keep exploring',
                 nextScene: 11,
             }
         ]
@@ -146,7 +146,7 @@ const storyNode =[
                 requiredState: (currentState) => currentState.sword,
                 nextScene: 13,
             }, {
-                text: 'take the sword and fight',
+                text: 'take the gun and fight',
                 requiredState: (currentState) => currentState.gun,
                 nextScene: 13,
             }, {
@@ -156,7 +156,7 @@ const storyNode =[
         ]
     },  {
         id: 13,
-        text: 'With your help you manged to kill them all, the people you helped were really grateful and they want to join them',
+        text: 'With your help you managed to kill them all, the people you helped were really grateful and they want to join them',
         options: [
             {
                 text: 'Accept',
