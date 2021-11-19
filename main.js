@@ -149,7 +149,6 @@ const storyNode =[
                 nextScene: 13,
             }, {
                 text: 'keep hiding',
-                requiredState: (currentState) => currentState.gun,
                 nextScene: 14,
             }
         ]
