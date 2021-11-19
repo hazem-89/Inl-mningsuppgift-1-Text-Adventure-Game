@@ -2,10 +2,12 @@
 const optionsButtonElement = document.getElementById('options-btn');
 const textFieldElement = document.getElementById('text-field');
 let state = {};
+
+/** Create the story Object */
 const storyNode =[ 
     {
         id: 0,
-        text: 'Lets play!',
+        text: 'Welcome To ZombieLand',
         options: [
             {
                 text: 'Start',
@@ -17,7 +19,7 @@ const storyNode =[
         text: 'Alert, Alert, the zombies had broken into your house! ',
         options: [
             {
-                text: 'Try to scape',
+                text: 'Try to escape',
                 nextScene: 2,
             }, {
                 text: 'Fight',
@@ -26,7 +28,7 @@ const storyNode =[
         ]
     },  {
         id: 2,
-        text: 'While you trying to scape, you could chose one thing to take with you',
+        text: 'While you trying to escape, you could chose one thing to take with you',
         options: [
             {
                 text: 'your gun',
@@ -66,7 +68,7 @@ const storyNode =[
         ]
     },  {
         id: 6,
-        text: 'A groupe of zombies besiege you! You lose!',
+        text: 'A groupe of zombies besiege you! You lost!',
         options: [
             {
                 text: 'Restart',
@@ -75,7 +77,7 @@ const storyNode =[
         ]
     },  {
         id: 7,
-        text: 'you manged to find the maine road, you see a car',
+        text: 'you managed to find the main road, you see a car',
         options: [
             {
                 text: 'Drive the car',
@@ -87,14 +89,14 @@ const storyNode =[
         ]
     },  {
         id: 8,
-        text: 'while you trying to start the car it mad a lot of noise and the zombies are heading to you now',
+        text: 'while you trying to start the car it made a lot of noise and the zombies are heading to you now',
         options: [
             {
                 text: 'take the sword and fight',
                 requiredState: (currentState) => currentState.sword,
                 nextScene: 9,
             }, {
-                text: 'take the sword and fight',
+                text: 'take the gun and fight',
                 requiredState: (currentState) => currentState.gun,
                 nextScene: 10,
             } ,{
@@ -116,7 +118,7 @@ const storyNode =[
         ]
     },  {
         id: 10,
-        text: 'The zombies where too many you don not have enough bullets, Game over',
+        text: 'The zombies where too many you do not have enough bullets, Game over',
         options: [
             {
                 text: 'Restart the game',
@@ -223,16 +225,14 @@ const storyNode =[
         ]
     }
         ]
-    
-
+/** the game Start */    
 function startGame() {
     state = {};
     showStoryNode(0)
 }
 
-
-/**
- * blocking up the index for the object and add the options buttons
+/** bringing the index for the object and creating the options buttons
+ * 
  * @param {Index} sceneIndex 
  */
 function showStoryNode(sceneIndex) {
@@ -250,9 +250,20 @@ function showStoryNode(sceneIndex) {
         }
     });
 }
+
+/**showing option depending on the state if it
+ * 
+ * @param {Array} option 
+ * @returns 
+ */
 function showOption(option) {
         return option.requiredState == null || option.requiredState(state);
 }
+
+/**selecting the option based on the next scene id
+ * @param {Array} option 
+ * @returns 
+ */
 function selectOption(option) {
     const nextSceneNodeId = option.nextScene;
     if (nextSceneNodeId < 0) {
@@ -262,4 +273,31 @@ function selectOption(option) {
     showStoryNode(nextSceneNodeId)
 }
 
+// Game background slider
+let activeImageIndex = 0;
+
+/** starting the background slide
+ *
+ */
+function startSlider() {
+    setInterval(fadeToNextImage, 10000)
+}
+
+/** creating the background slide function
+ * 
+ */
+function fadeToNextImage() {
+  const images =  document.querySelectorAll('.slider > img')
+  const activeImage = images[activeImageIndex];
+  if (activeImageIndex => images.length - 1) {
+      activeImageIndex = 0;
+  } else {
+      activeImageIndex += 1; 
+  } 
+
+  const nextImage = images[activeImageIndex + 1];
+  activeImage.classList.toggle('show')
+  nextImage.classList.toggle('show')
+}
+startSlider()
 startGame()
